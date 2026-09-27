@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <title>دليل تكامل تطبيق العميل والتاجر</title>
+    <style>
+        @page { margin: 15mm 14mm 15mm; }
+        body { font-family: dejavusans, sans-serif; color: #15233b; font-size: 10.2pt; line-height: 1.65; direction: rtl; }
+        h1, h2, h3, p { margin-top: 0; }
+        h1 { color: #0b2c56; font-size: 25pt; line-height: 1.25; margin-bottom: 8px; }
+        h2 { color: #0b4478; font-size: 17pt; line-height: 1.3; border-bottom: 2px solid #d6e6f5; padding-bottom: 5px; margin: 0 0 12px; }
+        h3 { color: #135a91; font-size: 12.5pt; margin: 10px 0 6px; }
+        p { margin-bottom: 7px; }
+        .page { page-break-after: always; }
+        .page:last-child { page-break-after: auto; }
+        .hero { background: #f1f7fd; border: 1px solid #c6daef; border-radius: 8px; padding: 22px 24px; margin-bottom: 20px; }
+        .subtitle { color: #51657d; font-size: 11pt; margin-bottom: 13px; }
+        .chip { display: inline-block; border: 1px solid #bad2ea; border-radius: 15px; background: #fff; color: #164d7c; padding: 4px 11px; margin-left: 5px; font-size: 8.5pt; }
+        .eyebrow { color: #2871a9; font-size: 8.5pt; font-weight: bold; margin-bottom: 5px; }
+        .card { border: 1px solid #cfdfef; border-radius: 7px; background: #fbfdff; padding: 9px 12px; margin-bottom: 7px; }
+        .card-title { color: #0d4779; font-weight: bold; margin-bottom: 3px; }
+        .muted { color: #62738a; font-size: 8.7pt; }
+        .code { direction: ltr; text-align: left; unicode-bidi: embed; font-family: dejavusansmono, monospace; background: #edf6fd; color: #124d7f; border: 1px solid #cfe3f3; border-radius: 4px; padding: 1px 5px; font-size: 8.3pt; }
+        .code-block { direction: ltr; text-align: left; unicode-bidi: embed; font-family: dejavusansmono, monospace; background: #f3f8fc; border: 1px solid #cbdff0; border-radius: 7px; padding: 8px 10px; margin: 6px 0 10px; font-size: 8.1pt; line-height: 1.55; }
+        .method { display: inline-block; direction: ltr; min-width: 32px; font-family: dejavusansmono, monospace; font-size: 7.8pt; font-weight: bold; color: #08734d; text-align: left; }
+        .method.post { color: #08734d; }
+        .method.put { color: #9a5b00; }
+        .endpoint { direction: ltr; unicode-bidi: embed; font-family: dejavusansmono, monospace; color: #124d7f; font-size: 8.1pt; }
+        .api-row { border-bottom: 1px solid #e0ebf5; padding: 3px 0; text-align: left; direction: ltr; }
+        .api-row:last-child { border-bottom: 0; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 9px; }
+        th { background: #eaf4fc; color: #124d7f; padding: 6px 7px; border: 1px solid #cddfee; font-size: 8.5pt; }
+        td { padding: 6px 7px; border: 1px solid #dce7f1; vertical-align: top; font-size: 8.3pt; }
+        .two-col { width: 100%; border-collapse: separate; border-spacing: 7px 0; margin-right: -7px; }
+        .two-col > tbody > tr > td { width: 50%; border: 0; padding: 0 7px; }
+        ul, ol { margin: 4px 0 9px; padding-right: 20px; }
+        li { margin-bottom: 5px; }
+        .step { display: table; width: 100%; margin-bottom: 7px; }
+        .step-num { display: table-cell; width: 28px; height: 28px; background: #1169a6; color: white; border-radius: 14px; text-align: center; vertical-align: middle; font-weight: bold; }
+        .step-body { display: table-cell; padding-right: 9px; vertical-align: middle; }
+        .success { background: #eef9f4; border-color: #bfe3d1; }
+        .warning { background: #fff8ea; border-color: #efd59b; }
+        .danger { background: #fff2f2; border-color: #efcaca; }
+        .callout { border-right: 5px solid #1474b4; background: #f1f7fd; border-radius: 6px; padding: 11px 13px; margin: 10px 0; }
+        .warning-callout { border-right-color: #c88712; background: #fff8e8; }
+        .success-callout { border-right-color: #16845a; background: #eef9f4; }
+        .small { font-size: 8.5pt; }
+        .center { text-align: center; }
+        .ltr { direction: ltr; text-align: left; unicode-bidi: embed; }
+        .spacer { height: 6px; }
+    </style>
+</head>
+<body>
+
+<section class="page">
+    <div class="hero">
+        <div class="eyebrow">MOBILE DEVELOPMENT HANDOFF</div>
+        <h1>دليل تكامل تطبيق العميل والتاجر</h1>
+        <p class="subtitle">ملخص تنفيذي للملفات والمسارات والحالات المطلوبة لربط Android وiOS مع Laravel API، مع فصل ما هو جاهز حاليًا وما يحتاج استكمالًا.</p>
+        <span class="chip">Android / iOS</span>
+        <span class="chip">Laravel REST API</span>
+        <span class="chip">Customer + Seller</span>
+        <span class="chip">Reviewed 2026-06-30</span>
+    </div>
+
+    <h2>1. الملفات الأساسية التي سيستخدمها التطبيق</h2>
+
+    <table class="two-col"><tr><td>
+        <h3>تطبيق العميل - API v1</h3>
+        <div class="card"><div class="card-title"><span class="code">routes/rest_api/v1/api.php</span></div><div>المصدر الرئيسي لمسارات التسجيل، السلة، الطلب، الشحن، الباقات والدفع.</div></div>
+        <div class="card"><div class="card-title"><span class="code">CustomerAPIAuthController.php</span></div><div>تسجيل ودخول العميل وقبول الشروط والخصوصية.</div></div>
+        <div class="card"><div class="card-title"><span class="code">CustomerPurchasePackageController.php</span></div><div>الباقات، limit summary، extra credit وفاتورة التفعيل.</div></div>
+        <div class="card"><div class="card-title"><span class="code">OrderController.php</span></div><div>إنشاء الطلب، منع الضيف، فحص limit والدفع اليدوي.</div></div>
+        <div class="card"><div class="card-title"><span class="code">ShippingMethodController.php</span></div><div>اختيار الشحن وخيارات same-day / next-day / normal.</div></div>
+        <div class="card"><div class="card-title"><span class="code">ProductController.php</span></div><div>البحث وHomepage Featured Offers لتطبيق العميل.</div></div>
+    </td><td>
+        <h3>تطبيق التاجر - API v3</h3>
+        <div class="card"><div class="card-title"><span class="code">routes/rest_api/v3/seller.php</span></div><div>المصدر الرئيسي لكل مسارات تطبيق التاجر الجديد.</div></div>
+        <div class="card"><div class="card-title"><span class="code">auth/RegisterController.php</span></div><div>تسجيل التاجر وregistration reference وOTP.</div></div>
+        <div class="card"><div class="card-title"><span class="code">SellerInsuranceController.php</span></div><div>تأمين التاجر مرة واحدة والدفع الرقمي أو اليدوي.</div></div>
+        <div class="card"><div class="card-title"><span class="code">SellerPackageController.php</span></div><div>قائمة الباقات، الحصص، الدفع وحالة مراجعة الأدمن.</div></div>
+        <div class="card"><div class="card-title"><span class="code">seller/ProductController.php</span></div><div>إنشاء المنتج وحجز الحصة وبدء مدة النشر.</div></div>
+        <div class="card"><div class="card-title"><span class="code">Seller*PromotionController.php</span></div><div>الإعلان المميز في البحث والصفحة الرئيسية.</div></div>
+    </td></tr></table>
+
+    <div class="callout">
+        <b>لا يستخدم التطبيق مباشرة:</b> ملفات Blade، ومسارات admin/vendor/web، وmigrations وenv وstorage وtests. هذه مراجع Backend وليست Mobile endpoints.
+    </div>
+</section>
+
+<section class="page">
+    <div class="eyebrow">PAGE 2 - API INTEGRATION</div>
+    <h2>2. صفحة الـIntegration والمسارات الجاهزة</h2>
+
+    <div class="card">
+        <div class="card-title">الإعداد الموحد</div>
+        <div class="code-block">API_BASE_URL=https://YOUR-DOMAIN.com/api
+Accept: application/json
+Authorization: Bearer {token}
+lang: ar</div>
+        <div class="muted">استخدم Customer token لمسارات v1/customer، وSeller token لمسارات v3/seller. لا تستخدم localhost على الهاتف الحقيقي.</div>
+    </div>
+
+    <table class="two-col"><tr><td>
+        <h3>Customer Integration</h3>
+        <div class="card ltr">
+            <div class="api-row"><span class="method post">POST</span> <span class="endpoint">/v1/auth/register</span></div>
+            <div class="api-row"><span class="method">GET</span> <span class="endpoint">/v1/customer/purchase-packages</span></div>
+            <div class="api-row"><span class="method">GET</span> <span class="endpoint">/v1/customer/purchase-packages/limit-summary</span></div>
+            <div class="api-row"><span class="method post">POST</span> <span class="endpoint">/v1/customer/purchase-packages/purchase</span></div>
+            <div class="api-row"><span class="method post">POST</span> <span class="endpoint">/v1/customer/purchase-packages/extra-credit/purchase</span></div>
+            <div class="api-row"><span class="method">GET</span> <span class="endpoint">/v1/customer/activation-invoice/current</span></div>
+            <div class="api-row"><span class="method post">POST</span> <span class="endpoint">/v1/customer/activation-invoice/pay</span></div>
+            <div class="api-row"><span class="method post">POST</span> <span class="endpoint">/v1/customer/activation-invoice/pay-by-offline-payment</span></div>
+            <div class="api-row"><span class="method">GET</span> <span class="endpoint">/v1/shipping-method/three-step-options</span></div>
+            <div class="api-row"><span class="method post">POST</span> <span class="endpoint">/v1/shipping-method/choose-for-order</span></div>
+            <div class="api-row"><span class="method">GET</span> <span class="endpoint">/v1/products/homepage-featured-offers</span></div>
+            <div class="api-row"><span class="method">GET</span> <span class="endpoint">/v1/products/search</span></div>
+        </div>
+    </td><td>
+        <h3>Seller Integration</h3>
+        <div class="card ltr">
+            <div class="api-row"><span class="method post">POST</span> <span class="endpoint">/v3/seller/registration</span></div>
+            <div class="api-row"><span class="method post">POST</span> <span class="endpoint">/v3/seller/registration/send-otp</span></div>
+            <div class="api-row"><span class="method post">POST</span> <span class="endpoint">/v3/seller/registration/verify-otp</span></div>
+            <div class="api-row"><span class="method">GET</span> <span class="endpoint">/v3/seller/registration/status</span></div>
+            <div class="api-row"><span class="method post">POST</span> <span class="endpoint">/v3/seller/auth/login</span></div>
+            <div class="api-row"><span class="method">GET</span> <span class="endpoint">/v3/seller/insurance/status</span></div>
+            <div class="api-row"><span class="method post">POST</span> <span class="endpoint">/v3/seller/insurance/offline-payment</span></div>
+            <div class="api-row"><span class="method">GET</span> <span class="endpoint">/v3/seller/packages</span></div>
+            <div class="api-row"><span class="method post">POST</span> <span class="endpoint">/v3/seller/packages/offline-payment</span></div>
+            <div class="api-row"><span class="method post">POST</span> <span class="endpoint">/v3/seller/products/add</span></div>
+            <div class="api-row"><span class="method put">PUT</span> <span class="endpoint">/v3/seller/products/status-update</span></div>
+            <div class="api-row"><span class="method">GET</span> <span class="endpoint">/v3/seller/promotions/search</span></div>
+            <div class="api-row"><span class="method post">POST</span> <span class="endpoint">/v3/seller/promotions/search/activate</span></div>
+            <div class="api-row"><span class="method">GET</span> <span class="endpoint">/v3/seller/promotions/homepage</span></div>
+            <div class="api-row"><span class="method post">POST</span> <span class="endpoint">/v3/seller/promotions/homepage/activate</span></div>
+        </div>
+    </td></tr></table>
+
+    <div class="callout success-callout small"><b>مهم:</b> المسارات أعلاه هي الصيغة النسبية بعد <span class="code">/api</span>. باقات العميل وفاتورة التفعيل تقع داخل <span class="code">/v1/customer</span>.</div>
+</section>
+
+<section class="page">
+    <div class="eyebrow">CUSTOMER APP</div>
+    <h2>3. رحلة العميل من التسجيل حتى تفعيل الطلب</h2>
+
+    <div class="step"><div class="step-num">1</div><div class="step-body"><b>تسجيل العميل</b><br><span class="muted">إرسال <span class="code">terms_accepted: 1</span> و<span class="code">privacy_accepted: 1</span> مع كل نوع تسجيل مستخدم.</span></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><b>التصفح والسلة</b><br><span class="muted">الضيف يتصفح ويضيف للسلة، لكن checkout يرجع <span class="code">customer_login_required</span> حتى يسجل الدخول.</span></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><b>اختيار الشحن</b><br><span class="muted">تحميل three-step-options، وعرض العناصر التي <span class="code">available=true</span>. Same Day يختفي بعد cutoff ويتحقق منه السيرفر.</span></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-body"><b>فحص الباقة والـlimit</b><br><span class="muted">استخدام limit-summary وعدم حساب أسعار المنتجات أو shortage محليًا.</span></div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-body"><b>دفع المنتجات</b><br><span class="muted">أول طلب قد يصبح paid لكنه <span class="code">activation_pending</span> حتى دفع فاتورة التأمين والباقة.</span></div></div>
+    <div class="step"><div class="step-num">6</div><div class="step-body"><b>فاتورة التفعيل</b><br><span class="muted">بعد العودة من الدفع استدعاء current، وعرض package + insurance + total + الرسالة القادمة من السيرفر.</span></div></div>
+    <div class="step"><div class="step-num">7</div><div class="step-body"><b>تحرير الطلب</b><br><span class="muted">بعد الدفع الرقمي أو موافقة الأدمن على offline: تتفعل الباقة، يمتد التأمين، ويصبح الطلب قابلًا للمعالجة.</span></div></div>
+
+    <h3>أهم حقول القرار</h3>
+    <table>
+        <tr><th>الحقل / الكود</th><th>تصرف التطبيق</th></tr>
+        <tr><td class="ltr"><span class="code">customer_login_required</span></td><td>فتح Login ثم إعادة checkout.</td></tr>
+        <tr><td class="ltr"><span class="code">customer_purchase_package_required</span></td><td>فتح شاشة الباقات.</td></tr>
+        <tr><td class="ltr"><span class="code">customer_purchase_limit_insufficient</span></td><td>عرض shortage واقتراح Extra Credit من assessment.</td></tr>
+        <tr><td class="ltr"><span class="code">monthly_insurance_required</span></td><td>فتح فاتورة التفعيل الحالية.</td></tr>
+        <tr><td class="ltr"><span class="code">pending_offline_review</span></td><td>عرض قيد مراجعة الإدارة ومنع أي تفعيل محلي.</td></tr>
+    </table>
+
+    <div class="callout"><b>قاعدة مالية:</b> purchase limit يستهلك سعر المنتجات فقط. الشحن والضرائب لا تخصم من limit، وكل الحسابات تتم server-side.</div>
+</section>
+
+<section class="page">
+    <div class="eyebrow">SELLER APP</div>
+    <h2>4. رحلة التاجر والتدرج الإجباري للنشر</h2>
+
+    <div class="code-block">REGISTER -> VERIFY OTP -> ADMIN APPROVAL -> INSURANCE
+-> PACKAGE -> ADD PRODUCT -> PRODUCT APPROVAL -> PUBLISH
+-> OPTIONAL SEARCH / HOMEPAGE PROMOTION</div>
+
+    <table class="two-col"><tr><td>
+        <h3>التسجيل والمصادقة</h3>
+        <ul>
+            <li>التسجيل <span class="code">multipart/form-data</span> ويحتاج بيانات المتجر والصور.</li>
+            <li>حفظ <span class="code">registration_reference</span> حتى اكتمال OTP.</li>
+            <li>استخدام <span class="code">eligibility.next_step</span> لفتح OTP أو شاشة انتظار الأدمن.</li>
+            <li>لا يسمح API v3 بالحساب الموقوف أو غير الموثق.</li>
+        </ul>
+        <h3>التأمين</h3>
+        <ul>
+            <li>يدفع مرة واحدة قبل شراء الباقة.</li>
+            <li>الدفع اليدوي يحتاج proof image حتى 5MB.</li>
+            <li><span class="code">pending_review=true</span> يعني انتظار الأدمن.</li>
+        </ul>
+    </td><td>
+        <h3>الباقة والحصص</h3>
+        <ul>
+            <li>لا تعتبر الباقة نشطة إلا مع <span class="code">status=active</span> و<span class="code">payment_status=paid</span>.</li>
+            <li>استخدم remaining limits القادمة من السيرفر.</li>
+            <li>كل منتج جديد يحجز product quota مرة واحدة.</li>
+            <li>مدة الإعلان تبدأ عند أول نشر فعلي.</li>
+        </ul>
+        <h3>الترقيات</h3>
+        <ul>
+            <li>Search وHomepage حصتان مستقلتان.</li>
+            <li>اعرض زر الترقية فقط عندما <span class="code">can_promote=true</span>.</li>
+            <li>لا تعِد ترتيب نتائج البحث أو عروض الصفحة الرئيسية محليًا.</li>
+        </ul>
+    </td></tr></table>
+
+    <h3>أخطاء يجب ربطها بالشاشات</h3>
+    <table>
+        <tr><th>Backend code</th><th>الشاشة المطلوبة</th></tr>
+        <tr><td class="ltr">seller_phone_verification_required</td><td>OTP</td></tr>
+        <tr><td class="ltr">seller_account_not_approved</td><td>انتظار / حالة الحساب</td></tr>
+        <tr><td class="ltr">active_seller_insurance_is_required_before_adding_products</td><td>تأمين التاجر</td></tr>
+        <tr><td class="ltr">active_seller_package_is_required_before_adding_products</td><td>باقات التاجر</td></tr>
+        <tr><td class="ltr">seller_package_product_limit_has_been_reached</td><td>ترقية أو تجديد الباقة</td></tr>
+        <tr><td class="ltr">seller_package_search_promotion_limit_has_been_reached</td><td>ملخص حصة Search</td></tr>
+        <tr><td class="ltr">seller_package_homepage_promotion_limit_has_been_reached</td><td>ملخص حصة Homepage</td></tr>
+    </table>
+</section>
+
+<section class="page">
+    <div class="eyebrow">PAYMENT REVIEW</div>
+    <h2>5. الدفع اليدوي ومراجعة الأدمن</h2>
+
+    <div class="callout warning-callout"><b>قاعدة إلزامية:</b> أي Offline Payment لا يعني نجاح الدفع. التطبيق يعرض "قيد مراجعة الإدارة" فقط، ولا يفعّل طلبًا أو تأمينًا أو باقة قبل Approve من الأدمن.</div>
+
+    <table>
+        <tr><th>العملية</th><th>إرسال التطبيق</th><th>مكان مراجعة الأدمن</th></tr>
+        <tr><td>طلب العميل</td><td>Offline order form + method information</td><td>Offline Orders داخل نظام الطلبات</td></tr>
+        <tr><td>فاتورة تفعيل العميل</td><td>method_id + method_informations</td><td>Customers -> Purchase Packages -> Offline Reviews</td></tr>
+        <tr><td>تأمين التاجر</td><td>multipart + payment_proof</td><td>Vendors -> Insurance Payments</td></tr>
+        <tr><td>باقة التاجر</td><td>multipart + package_id + payment_proof</td><td>Vendors -> Package Payments</td></tr>
+    </table>
+
+    <h3>State machine</h3>
+    <div class="code-block">pending / unpaid
+    -> pending_review OR pending_offline_review
+    -> paid / active     (admin approve)
+    -> rejected          (admin reject)</div>
+
+    <h3>Offline form configuration</h3>
+    <ul>
+        <li>يجب تفعيل إعداد <span class="code">offline_payment</span> العام.</li>
+        <li>يجب أيضًا تفعيل طريقة <span class="code">Manual Transfer / Auto Payment Form</span>.</li>
+        <li>الحقول الديناميكية تأتي من <span class="code">method_informations</span> ولا تُكتب ثابتة في التطبيق.</li>
+        <li>تطبيق التاجر يرفع screenshot كملف multipart فعلي.</li>
+    </ul>
+
+    <h3>HTTP handling</h3>
+    <table>
+        <tr><th>HTTP</th><th>الاستخدام</th><th>تصرف التطبيق</th></tr>
+        <tr><td>200</td><td>نجاح أو حالة business صحيحة</td><td>اقرأ payload والحالة الداخلية.</td></tr>
+        <tr><td>401</td><td>Token أو Login غير مسموح</td><td>تسجيل الدخول أو إعادة OTP.</td></tr>
+        <tr><td>403</td><td>Validation أو business rule</td><td>استخدم code لتحديد الشاشة.</td></tr>
+        <tr><td>404</td><td>عنصر أو طريقة دفع غير موجودة</td><td>Refresh للقائمة.</td></tr>
+        <tr><td>422 / 429</td><td>OTP غير صالح / انتظار resend</td><td>عرض الرسالة والعداد.</td></tr>
+    </table>
+
+    <div class="small muted">الـparser يجب أن يدعم الشكلين: <span class="code">{message, code}</span> و<span class="code">{errors: [{code, message}]}</span>.</div>
+</section>
+
+<section>
+    <div class="eyebrow">IMPLEMENTATION STATUS</div>
+    <h2>6. المطلوب على Android/iOS والفجوات الحالية</h2>
+
+    <h3>جاهز للربط الآن</h3>
+    <table class="two-col"><tr><td>
+        <ul>
+            <li>تسجيل العميل مع الشروط والخصوصية.</li>
+            <li>منع checkout للضيف.</li>
+            <li>باقات العميل وlimit وextra credit الرقمي.</li>
+            <li>فاتورة التفعيل والدفع الرقمي.</li>
+            <li>الشحن الثلاثي وcutoff.</li>
+            <li>Homepage Featured Offers.</li>
+        </ul>
+    </td><td>
+        <ul>
+            <li>تسجيل التاجر وOTP وموافقة الأدمن.</li>
+            <li>تأمين التاجر الرقمي واليدوي.</li>
+            <li>باقات التاجر والحصص.</li>
+            <li>حماية إنشاء ونشر المنتجات.</li>
+            <li>Search Promotion وHomepage Promotion.</li>
+            <li>حماية API v2 وv3 للحساب غير المؤهل.</li>
+        </ul>
+    </td></tr></table>
+
+    <h3>فجوات Backend قبل اعتماد كل الشاشات</h3>
+    <div class="card warning"><b>1. Customer insurance status</b><br>لا يوجد endpoint مستقل <span class="code">GET /v1/customer/insurance/status</span>. الحالة تُفهم من activation invoice ورفض checkout.</div>
+    <div class="card warning"><b>2. Effective vendor commission</b><br><span class="code">seller-info</span> يعيد override فقط؛ عندما يكون null لا يعيد النسبة العامة الفعلية.</div>
+    <div class="card warning"><b>3. Offline direct package / extra credit</b><br>الشراء المباشر لباقات العميل وextra credit يدعم digital فقط. Offline متاح لفاتورة التفعيل والطلبات.</div>
+    <div class="card warning"><b>4. Customer screenshot upload</b><br>فاتورة تفعيل العميل تتوقع قيمة payment_screenshot داخل JSON. لا يوجد multipart upload واضح للصورة الفعلية حتى الآن.</div>
+
+    <h3>Checklist للمطور</h3>
+    <table>
+        <tr><td>□ فصل Customer token عن Seller token</td><td>□ Polling / Refresh بعد الدفع والمراجعة</td></tr>
+        <tr><td>□ الاعتماد على code وليس نص message</td><td>□ عدم تنفيذ optimistic activation</td></tr>
+        <tr><td>□ عرض Same Day فقط عندما available=true</td><td>□ عدم حساب limit أو shortage محليًا</td></tr>
+        <tr><td>□ Badge للإعلان المميز في البحث</td><td>□ Section للعروض المميزة في الرئيسية</td></tr>
+    </table>
+
+    <div class="callout success-callout"><b>الخلاصة العملية:</b> الربط الأساسي جاهز لتطبيق العميل والتاجر. يبدأ مطور الموبايل بالمسارات الموجودة في صفحة Integration، ويؤجل الشاشات المرتبطة بالفجوات الأربع حتى استكمال Backend أو اعتماد صيغة واضحة لها.</div>
+    <p class="center muted small">Prepared as a structured integration brief for Android and iOS development handoff.</p>
+</section>
+
+</body>
+</html>
