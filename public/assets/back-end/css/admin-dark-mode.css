@@ -1,0 +1,414 @@
+/* Admin dark mode: scoped to its own preference key so it never affects the
+   merchant dashboard or storefront.  No global transitions are used here;
+   changing the theme is immediate and does not cause layout jank. */
+:root[data-ba-admin-theme="dark"] {
+  color-scheme: dark;
+  --ba-admin-bg: #0d1424;
+  --ba-admin-surface: #151f33;
+  --ba-admin-surface-raised: #1b2740;
+  --ba-admin-field: #101a2d;
+  --ba-admin-border: #324564;
+  --ba-admin-border-subtle: #263752;
+  --ba-admin-text: #edf3ff;
+  --ba-admin-text-muted: #a9bbd8;
+  --ba-admin-primary: #4c8dff;
+  --ba-admin-primary-soft: rgba(76, 141, 255, .16);
+}
+
+:root[data-ba-admin-theme="dark"] body,
+:root[data-ba-admin-theme="dark"] .main,
+:root[data-ba-admin-theme="dark"] .content,
+:root[data-ba-admin-theme="dark"] .content-wrapper,
+:root[data-ba-admin-theme="dark"] .main-content,
+:root[data-ba-admin-theme="dark"] .page-content,
+:root[data-ba-admin-theme="dark"] .app-v2,
+:root[data-ba-admin-theme="dark"] .v2-main {
+  background: var(--ba-admin-bg) !important;
+  color: var(--ba-admin-text);
+}
+
+:root[data-ba-admin-theme="dark"] .app-v2 {
+  --v2-bg: var(--ba-admin-bg);
+  --v2-surface: var(--ba-admin-surface);
+  --v2-surface-2: var(--ba-admin-surface-raised);
+  --v2-border: var(--ba-admin-border);
+  --v2-border-strong: #456084;
+  --v2-hairline: var(--ba-admin-border-subtle);
+  --v2-chip: #22304a;
+  --v2-fg: var(--ba-admin-text);
+  --v2-fg-dim: #c4d2e8;
+  --v2-fg-muted: #8fa4c5;
+  --v2-primary: var(--ba-admin-primary);
+  --v2-primary-soft: var(--ba-admin-primary-soft);
+  --v2-primary-softer: rgba(76, 141, 255, .09);
+  --v2-primary-ring: rgba(76, 141, 255, .32);
+  --v2-success-soft: rgba(34, 197, 94, .15);
+  --v2-warn-soft: rgba(245, 158, 11, .16);
+  --v2-danger-soft: rgba(248, 113, 113, .16);
+  --v2-info-soft: rgba(56, 189, 248, .16);
+  --v2-shadow-xs: 0 1px 1px rgba(0, 0, 0, .22);
+  --v2-shadow-sm: 0 3px 10px rgba(0, 0, 0, .20);
+  --v2-shadow-md: 0 12px 28px rgba(0, 0, 0, .28);
+  --v2-sidebar-bg: #111a2b;
+  --v2-sidebar-bg-2: #152038;
+  --v2-sidebar-border: var(--ba-admin-border-subtle);
+  --v2-sidebar-hairline: #1f2e46;
+  --v2-sidebar-chip: #22304a;
+  --v2-sidebar-chip-strong: #344968;
+}
+
+:root[data-ba-admin-theme="dark"] .v2-theme-toggle {
+  color: #facc55 !important;
+  background: rgba(250, 204, 85, .1) !important;
+}
+:root[data-ba-admin-theme="dark"] .v2-theme-toggle:hover { background: rgba(250, 204, 85, .18) !important; }
+
+/* Keep the platform wordmark clearly visible on every dark admin surface. */
+:root[data-ba-admin-theme="dark"] .v2-brand-logo img,
+:root[data-ba-admin-theme="dark"] .v2-brand-logo-mini img,
+:root[data-ba-admin-theme="dark"] .navbar-logo img,
+:root[data-ba-admin-theme="dark"] .ba-platform-logo {
+  filter: brightness(0) invert(1);
+}
+
+:root[data-ba-admin-theme="dark"] .card,
+:root[data-ba-admin-theme="dark"] .card-body,
+:root[data-ba-admin-theme="dark"] .card-header,
+:root[data-ba-admin-theme="dark"] .card-footer,
+:root[data-ba-admin-theme="dark"] .modal-content,
+:root[data-ba-admin-theme="dark"] .offcanvas,
+:root[data-ba-admin-theme="dark"] .dropdown-menu,
+:root[data-ba-admin-theme="dark"] .list-group-item,
+:root[data-ba-admin-theme="dark"] .accordion-item,
+:root[data-ba-admin-theme="dark"] .toast,
+:root[data-ba-admin-theme="dark"] .bg-white,
+:root[data-ba-admin-theme="dark"] .bg-light,
+:root[data-ba-admin-theme="dark"] .bg-soft-light {
+  background-color: var(--ba-admin-surface) !important;
+  color: var(--ba-admin-text) !important;
+  border-color: var(--ba-admin-border-subtle) !important;
+}
+
+:root[data-ba-admin-theme="dark"] .card-header,
+:root[data-ba-admin-theme="dark"] .card-footer,
+:root[data-ba-admin-theme="dark"] .modal-header,
+:root[data-ba-admin-theme="dark"] .modal-footer,
+:root[data-ba-admin-theme="dark"] .offcanvas-header,
+:root[data-ba-admin-theme="dark"] .dropdown-divider,
+:root[data-ba-admin-theme="dark"] hr {
+  border-color: var(--ba-admin-border-subtle) !important;
+}
+
+:root[data-ba-admin-theme="dark"] h1,
+:root[data-ba-admin-theme="dark"] h2,
+:root[data-ba-admin-theme="dark"] h3,
+:root[data-ba-admin-theme="dark"] h4,
+:root[data-ba-admin-theme="dark"] h5,
+:root[data-ba-admin-theme="dark"] h6,
+:root[data-ba-admin-theme="dark"] .text-dark,
+:root[data-ba-admin-theme="dark"] .text-body,
+:root[data-ba-admin-theme="dark"] .text-title,
+:root[data-ba-admin-theme="dark"] .form-label,
+:root[data-ba-admin-theme="dark"] label,
+:root[data-ba-admin-theme="dark"] .modal-title,
+:root[data-ba-admin-theme="dark"] .offcanvas-title {
+  color: var(--ba-admin-text) !important;
+}
+:root[data-ba-admin-theme="dark"] p,
+:root[data-ba-admin-theme="dark"] small,
+:root[data-ba-admin-theme="dark"] .text-muted,
+:root[data-ba-admin-theme="dark"] .text-body-secondary,
+:root[data-ba-admin-theme="dark"] .form-text {
+  color: var(--ba-admin-text-muted) !important;
+}
+
+:root[data-ba-admin-theme="dark"] .form-control,
+:root[data-ba-admin-theme="dark"] .form-select,
+:root[data-ba-admin-theme="dark"] textarea,
+:root[data-ba-admin-theme="dark"] input:not([type="checkbox"]):not([type="radio"]),
+:root[data-ba-admin-theme="dark"] .input-group-text,
+:root[data-ba-admin-theme="dark"] .select2-container--default .select2-selection--single,
+:root[data-ba-admin-theme="dark"] .select2-container--default .select2-selection--multiple,
+:root[data-ba-admin-theme="dark"] .select2-dropdown,
+:root[data-ba-admin-theme="dark"] .select2-search__field {
+  background-color: var(--ba-admin-field) !important;
+  border-color: var(--ba-admin-border) !important;
+  color: var(--ba-admin-text) !important;
+}
+:root[data-ba-admin-theme="dark"] .form-control::placeholder,
+:root[data-ba-admin-theme="dark"] textarea::placeholder,
+:root[data-ba-admin-theme="dark"] .select2-container--default .select2-selection--single .select2-selection__placeholder {
+  color: #8fa4c5 !important;
+  opacity: 1;
+}
+:root[data-ba-admin-theme="dark"] .form-control:focus,
+:root[data-ba-admin-theme="dark"] .form-select:focus,
+:root[data-ba-admin-theme="dark"] .select2-container--default.select2-container--focus .select2-selection--multiple,
+:root[data-ba-admin-theme="dark"] .select2-container--default.select2-container--open .select2-selection--single {
+  border-color: var(--ba-admin-primary) !important;
+  box-shadow: 0 0 0 3px rgba(76, 141, 255, .18) !important;
+}
+:root[data-ba-admin-theme="dark"] .select2-container--default .select2-selection--single .select2-selection__rendered,
+:root[data-ba-admin-theme="dark"] .select2-container--default .select2-results__option,
+:root[data-ba-admin-theme="dark"] .select2-container--default .select2-selection--multiple .select2-selection__choice {
+  color: var(--ba-admin-text) !important;
+}
+:root[data-ba-admin-theme="dark"] .select2-container--default .select2-results__option--highlighted[aria-selected],
+:root[data-ba-admin-theme="dark"] .select2-container--default .select2-results__option[aria-selected=true] {
+  background-color: var(--ba-admin-primary-soft) !important;
+  color: var(--ba-admin-text) !important;
+}
+
+:root[data-ba-admin-theme="dark"] .table,
+:root[data-ba-admin-theme="dark"] .table > :not(caption) > * > *,
+:root[data-ba-admin-theme="dark"] .table-responsive {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--ba-admin-text);
+  --bs-table-border-color: var(--ba-admin-border-subtle);
+  background-color: transparent !important;
+  color: var(--ba-admin-text) !important;
+  border-color: var(--ba-admin-border-subtle) !important;
+}
+:root[data-ba-admin-theme="dark"] .table thead th,
+:root[data-ba-admin-theme="dark"] table thead th {
+  background: #1b2942 !important;
+  color: #eaf2ff !important;
+  border-color: var(--ba-admin-border) !important;
+}
+:root[data-ba-admin-theme="dark"] .table-striped > tbody > tr:nth-of-type(odd) > *,
+:root[data-ba-admin-theme="dark"] .table-hover > tbody > tr:hover > * {
+  color: var(--ba-admin-text) !important;
+  background-color: rgba(76, 141, 255, .07) !important;
+}
+
+:root[data-ba-admin-theme="dark"] .pagination .page-link,
+:root[data-ba-admin-theme="dark"] .dataTables_wrapper .dataTables_filter input,
+:root[data-ba-admin-theme="dark"] .dataTables_wrapper .dataTables_length select,
+:root[data-ba-admin-theme="dark"] .dataTables_wrapper .dataTables_info,
+:root[data-ba-admin-theme="dark"] .dataTables_wrapper .dataTables_length,
+:root[data-ba-admin-theme="dark"] .dataTables_wrapper .dataTables_filter,
+:root[data-ba-admin-theme="dark"] .dataTables_wrapper .dataTables_paginate {
+  background-color: var(--ba-admin-field) !important;
+  color: var(--ba-admin-text-muted) !important;
+  border-color: var(--ba-admin-border) !important;
+}
+:root[data-ba-admin-theme="dark"] .pagination .page-item.active .page-link {
+  background-color: var(--ba-admin-primary) !important;
+  border-color: var(--ba-admin-primary) !important;
+  color: #fff !important;
+}
+
+:root[data-ba-admin-theme="dark"] .nav-tabs,
+:root[data-ba-admin-theme="dark"] .nav-pills,
+:root[data-ba-admin-theme="dark"] .nav-link,
+:root[data-ba-admin-theme="dark"] .breadcrumb,
+:root[data-ba-admin-theme="dark"] .breadcrumb-item + .breadcrumb-item::before {
+  border-color: var(--ba-admin-border-subtle);
+  color: var(--ba-admin-text-muted) !important;
+}
+:root[data-ba-admin-theme="dark"] .nav-tabs .nav-link.active,
+:root[data-ba-admin-theme="dark"] .nav-pills .nav-link.active {
+  background-color: var(--ba-admin-primary-soft) !important;
+  border-color: var(--ba-admin-primary) !important;
+  color: #dce9ff !important;
+}
+
+:root[data-ba-admin-theme="dark"] .alert-light,
+:root[data-ba-admin-theme="dark"] .alert-warning,
+:root[data-ba-admin-theme="dark"] .alert-info {
+  background-color: #202f48 !important;
+  border-color: #3b5274 !important;
+  color: #d8e7ff !important;
+}
+:root[data-ba-admin-theme="dark"] .btn-light,
+:root[data-ba-admin-theme="dark"] .btn-outline-secondary {
+  background-color: #24334d !important;
+  border-color: #405675 !important;
+  color: var(--ba-admin-text) !important;
+}
+:root[data-ba-admin-theme="dark"] .btn-light:hover,
+:root[data-ba-admin-theme="dark"] .btn-outline-secondary:hover {
+  background-color: #314565 !important;
+  color: #fff !important;
+}
+
+:root[data-ba-admin-theme="dark"] .note-editor,
+:root[data-ba-admin-theme="dark"] .note-toolbar,
+:root[data-ba-admin-theme="dark"] .note-statusbar,
+:root[data-ba-admin-theme="dark"] .note-editable,
+:root[data-ba-admin-theme="dark"] .note-dropdown-menu,
+:root[data-ba-admin-theme="dark"] .daterangepicker,
+:root[data-ba-admin-theme="dark"] .daterangepicker .calendar-table,
+:root[data-ba-admin-theme="dark"] .flatpickr-calendar {
+  background: var(--ba-admin-surface) !important;
+  color: var(--ba-admin-text) !important;
+  border-color: var(--ba-admin-border) !important;
+}
+:root[data-ba-admin-theme="dark"] .note-toolbar .btn,
+:root[data-ba-admin-theme="dark"] .note-dropdown-menu .dropdown-item,
+:root[data-ba-admin-theme="dark"] .daterangepicker td,
+:root[data-ba-admin-theme="dark"] .daterangepicker th,
+:root[data-ba-admin-theme="dark"] .flatpickr-day {
+  color: var(--ba-admin-text) !important;
+}
+:root[data-ba-admin-theme="dark"] .daterangepicker td.available:hover,
+:root[data-ba-admin-theme="dark"] .flatpickr-day:hover {
+  background: var(--ba-admin-primary-soft) !important;
+}
+
+:root[data-ba-admin-theme="dark"] .apexcharts-canvas text,
+:root[data-ba-admin-theme="dark"] .apexcharts-legend-text,
+:root[data-ba-admin-theme="dark"] .chartjs-render-monitor + * {
+  fill: var(--ba-admin-text-muted) !important;
+  color: var(--ba-admin-text-muted) !important;
+}
+:root[data-ba-admin-theme="dark"] .apexcharts-gridline { stroke: #334661 !important; }
+
+:root[data-ba-admin-theme="dark"] .swal2-popup,
+:root[data-ba-admin-theme="dark"] .swal2-title,
+:root[data-ba-admin-theme="dark"] .swal2-html-container {
+  background: var(--ba-admin-surface) !important;
+  color: var(--ba-admin-text) !important;
+}
+
+/* Standalone admin authentication screens. */
+:root[data-ba-admin-theme="dark"] .auth-wrapper-right,
+:root[data-ba-admin-theme="dark"] .auth-wrapper-form {
+  background: var(--ba-admin-surface) !important;
+  color: var(--ba-admin-text) !important;
+}
+:root[data-ba-admin-theme="dark"] .auth-wrapper-right .text-body,
+:root[data-ba-admin-theme="dark"] .auth-wrapper-right .text-muted { color: var(--ba-admin-text-muted) !important; }
+.admin-auth-theme-toggle {
+  position: fixed;
+  inset-block-start: 18px;
+  inset-inline-end: 18px;
+  z-index: 1050;
+  display: grid;
+  place-items: center;
+  inline-size: 42px;
+  block-size: 42px;
+  border: 1px solid #d9e2f0;
+  border-radius: 50%;
+  background: #fff;
+  color: #2563eb;
+  font-size: 21px;
+  line-height: 1;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, .12);
+}
+:root[data-ba-admin-theme="dark"] .admin-auth-theme-toggle {
+  background: #22304a;
+  border-color: #405675;
+  color: #facc55;
+}
+
+/* Dashboard widgets use legacy utility classes with hard-coded light colors.
+   Keep these overrides local to admin dark mode so the cards remain readable. */
+:root[data-ba-admin-theme="dark"] {
+  --section-bg: var(--ba-admin-surface-raised);
+  --section-bg2: var(--ba-admin-surface);
+}
+:root[data-ba-admin-theme="dark"] .bg-section,
+:root[data-ba-admin-theme="dark"] .bg-section2,
+:root[data-ba-admin-theme="dark"] .bg-panel {
+  background-color: var(--ba-admin-surface-raised) !important;
+  color: var(--ba-admin-text) !important;
+  border-color: var(--ba-admin-border) !important;
+}
+:root[data-ba-admin-theme="dark"] .bg-section :is(h1, h2, h3, h4, h5, h6, span, p),
+:root[data-ba-admin-theme="dark"] .bg-section2 :is(h1, h2, h3, h4, h5, h6, span, p) {
+  color: var(--ba-admin-text) !important;
+}
+
+:root[data-ba-admin-theme="dark"] .btn-outline-primary {
+  background-color: #1e2e49 !important;
+  border-color: #4c8dff !important;
+  color: #dce9ff !important;
+}
+:root[data-ba-admin-theme="dark"] .btn-outline-primary :is(i, span) { color: inherit !important; }
+:root[data-ba-admin-theme="dark"] .btn-outline-primary:hover,
+:root[data-ba-admin-theme="dark"] .btn-outline-primary:focus {
+  background-color: #2a5fae !important;
+  border-color: #71a6ff !important;
+  color: #fff !important;
+}
+
+:root[data-ba-admin-theme="dark"] .option-select-btn {
+  background: var(--ba-admin-field) !important;
+  border-color: var(--ba-admin-border) !important;
+  box-shadow: none !important;
+}
+:root[data-ba-admin-theme="dark"] .option-select-btn label span { color: var(--ba-admin-text-muted) !important; }
+:root[data-ba-admin-theme="dark"] .option-select-btn label input:checked + span {
+  background-color: #2867bd !important;
+  color: #fff !important;
+}
+
+/* Admin product editor and upload controls are supplied by standalone
+   plugins, so their default white surfaces must be explicitly replaced. */
+:root[data-ba-admin-theme="dark"] .bootstrap-tagsinput,
+:root[data-ba-admin-theme="dark"] .upload-file__wrapper,
+:root[data-ba-admin-theme="dark"] .image-uploader,
+:root[data-ba-admin-theme="dark"] .image-uploader__zip-preview,
+:root[data-ba-admin-theme="dark"] .dropzone-custom,
+:root[data-ba-admin-theme="dark"] .dropzone-custom .dz-message,
+:root[data-ba-admin-theme="dark"] .ql-toolbar.ql-snow,
+:root[data-ba-admin-theme="dark"] .ql-container.ql-snow,
+:root[data-ba-admin-theme="dark"] .ql-toolbar .ql-picker-options,
+:root[data-ba-admin-theme="dark"] .ql-snow .ql-tooltip {
+  background-color: var(--ba-admin-field) !important;
+  color: var(--ba-admin-text) !important;
+  border-color: var(--ba-admin-border) !important;
+}
+:root[data-ba-admin-theme="dark"] .bootstrap-tagsinput input,
+:root[data-ba-admin-theme="dark"] .ql-editor,
+:root[data-ba-admin-theme="dark"] .ql-snow .ql-picker,
+:root[data-ba-admin-theme="dark"] .ql-toolbar :is(button, .ql-picker-label, .ql-picker-item),
+:root[data-ba-admin-theme="dark"] .upload-file__wrapper :is(h1, h2, h3, h4, h5, h6, p, span, .text-info) {
+  color: var(--ba-admin-text) !important;
+}
+:root[data-ba-admin-theme="dark"] .bootstrap-tagsinput input::placeholder,
+:root[data-ba-admin-theme="dark"] .ql-editor.ql-blank::before {
+  color: #8fa4c5 !important;
+  opacity: 1;
+}
+:root[data-ba-admin-theme="dark"] .ql-toolbar :is(.ql-fill, .ql-stroke.ql-fill) { fill: var(--ba-admin-text) !important; }
+:root[data-ba-admin-theme="dark"] .ql-toolbar :is(.ql-stroke, .ql-stroke-miter) { stroke: var(--ba-admin-text) !important; }
+:root[data-ba-admin-theme="dark"] .outline-wrapper {
+  --color1: #34415f;
+  --color2: #40547d;
+  --color3: #34415f;
+  padding: 1px !important;
+  background: var(--ba-admin-border) !important;
+  transition: none !important;
+  animation: none !important;
+}
+:root[data-ba-admin-theme="dark"] .outline-wrapper.outline-animating {
+  background: #40547d !important;
+  animation: none !important;
+}
+:root[data-ba-admin-theme="dark"] :is(.btn-secondary, .btn-secondary.disabled, .btn-secondary:disabled, button:disabled, .btn.disabled, .btn:disabled) {
+  background-color: #2a344b !important;
+  border-color: var(--ba-admin-border) !important;
+  color: #b8c1d4 !important;
+  opacity: 1 !important;
+}
+
+.homepage-placement-option {
+  align-items: center;
+  border: 1px solid #dce3f0;
+  border-radius: .5rem;
+  cursor: pointer;
+  display: flex;
+  gap: .75rem;
+  min-height: 4.5rem;
+  padding: .75rem;
+}
+.homepage-placement-option:hover { border-color: var(--bs-primary); }
+.homepage-placement-option .form-check-input { flex: 0 0 auto; margin: 0; }
+:root[data-ba-admin-theme="dark"] .homepage-placement-modal { background: #1b2740; border: 1px solid var(--ba-admin-border); color: #edf3ff; }
+:root[data-ba-admin-theme="dark"] .homepage-placement-modal .modal-header,
+:root[data-ba-admin-theme="dark"] .homepage-placement-modal .modal-footer { border-color: var(--ba-admin-border); }
+:root[data-ba-admin-theme="dark"] .homepage-placement-modal .btn-close { filter: invert(1) grayscale(1) brightness(2); }
+:root[data-ba-admin-theme="dark"] .homepage-placement-option { background: #111c31; border-color: #3a4d72; color: #edf3ff; }
+:root[data-ba-admin-theme="dark"] .homepage-placement-option small { color: #aebddb; }

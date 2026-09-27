@@ -1,0 +1,291 @@
+/*
+ * Vendor dark mode
+ *
+ * The selector starts with the vendor shell or the vendor-only html marker,
+ * so it cannot affect the customer storefront, mobile applications, or admin.
+ */
+:root {
+  --vendor-dark-bg: #0f1525;
+  --vendor-dark-surface: #1a2236;
+  --vendor-dark-surface-raised: #232c44;
+  --vendor-dark-border: #34415f;
+  --vendor-dark-text: #e8ecf5;
+  --vendor-dark-text-muted: #b8c1d4;
+  --vendor-dark-text-subtle: #92a0ba;
+  --vendor-dark-focus: #8db2ff;
+}
+
+.vendor-theme-toggle {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid #d9dfe8;
+  border-radius: 50%;
+  background: #fff;
+  color: #334155;
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  line-height: 1;
+  font-size: 19px;
+  transition: background-color .16s ease, color .16s ease, border-color .16s ease, transform .16s ease;
+}
+.vendor-theme-toggle:hover { transform: translateY(-1px); }
+.vendor-theme-toggle:focus-visible { outline: 3px solid rgba(78, 128, 255, .35); outline-offset: 2px; }
+.vendor-theme-toggle__sun { display: none; }
+html[data-vendor-theme="dark"] .vendor-theme-toggle { background: #232c44; color: #f9c766; border-color: #4a5a7c; }
+html[data-vendor-theme="dark"] .vendor-theme-toggle__moon { display: none; }
+html[data-vendor-theme="dark"] .vendor-theme-toggle__sun { display: block; }
+
+/* Only the platform fallback logo is whitened; seller shop artwork stays untouched. */
+html[data-vendor-theme="dark"] .ba-platform-logo {
+  filter: brightness(0) invert(1);
+}
+
+/* The modern vendor shell: all legacy page content lives in .v2-main. */
+html[data-vendor-theme="dark"] .app-v2 {
+  color-scheme: dark;
+}
+html[data-vendor-theme="dark"] .app-v2,
+html[data-vendor-theme="dark"] .app-v2 .v2-main {
+  background: var(--vendor-dark-bg);
+  color: var(--vendor-dark-text);
+}
+html[data-vendor-theme="dark"] .app-v2 .v2-main {
+  --bs-dark: var(--vendor-dark-text);
+  --bs-body-color: var(--vendor-dark-text);
+  --bs-body-bg: var(--vendor-dark-bg);
+  --bs-heading-color: var(--vendor-dark-text);
+  --title-color: var(--vendor-dark-text);
+}
+html[data-vendor-theme="dark"] .app-v2 .v2-main .card,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .card-header,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .card-body,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .modal-content,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .offcanvas,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .dropdown-menu,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .table-responsive,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .bg-white,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .bg-light,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .bg-section,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .bg-section1,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .bg-section2,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .bg-soft-secondary,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .select2-container--default .select2-selection--single,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .select2-container--default .select2-selection--multiple,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .select2-dropdown {
+  background-color: var(--vendor-dark-surface) !important;
+  color: var(--vendor-dark-text) !important;
+  border-color: var(--vendor-dark-border) !important;
+}
+html[data-vendor-theme="dark"] .app-v2 .v2-main .form-control,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .form-select,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .custom-select,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .input-group-text,
+html[data-vendor-theme="dark"] .app-v2 .v2-main textarea,
+html[data-vendor-theme="dark"] .app-v2 .v2-main select {
+  background-color: #111a2c !important;
+  color: var(--vendor-dark-text) !important;
+  border-color: var(--vendor-dark-border) !important;
+}
+html[data-vendor-theme="dark"] .app-v2 .v2-main input::placeholder,
+html[data-vendor-theme="dark"] .app-v2 .v2-main textarea::placeholder { color: var(--vendor-dark-text-subtle) !important; opacity: 1; }
+html[data-vendor-theme="dark"] .app-v2 .v2-main :is(h1,h2,h3,h4,h5,h6,p,label,legend,th,td,caption,.text-dark,.title-color,.card-title,.form-label,.input-label,.form-control,.custom-control-label),
+html[data-vendor-theme="dark"] .app-v2 .v2-main .select2-selection__rendered { color: var(--vendor-dark-text) !important; }
+html[data-vendor-theme="dark"] .app-v2 .v2-main :is(.text-muted,.text-secondary,.text-gray,.text-gray-700,.text-gray-800,.text-gray-900,.form-text,.select2-selection__placeholder) { color: var(--vendor-dark-text-muted) !important; }
+html[data-vendor-theme="dark"] .app-v2 .v2-main :is(.table,.table > :not(caption) > * > *, .table thead th) { color: var(--vendor-dark-text) !important; border-color: var(--vendor-dark-border) !important; }
+html[data-vendor-theme="dark"] .app-v2 .v2-main .table thead th,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .table-light,
+html[data-vendor-theme="dark"] .app-v2 .v2-main .table-light > * > * { background-color: var(--vendor-dark-surface-raised) !important; }
+html[data-vendor-theme="dark"] .app-v2 .v2-main .table-hover tbody tr:hover > * { background-color: #273452 !important; }
+html[data-vendor-theme="dark"] .app-v2 .v2-main :is(.border,.border-top,.border-bottom,.border-left,.border-right,.dropdown-divider,.nav-tabs,.nav-tabs .nav-link) { border-color: var(--vendor-dark-border) !important; }
+html[data-vendor-theme="dark"] .app-v2 .v2-main :is(.nav-tabs .nav-link.active,.nav-pills .nav-link.active) { background-color: #2a3d68 !important; color: #fff !important; }
+html[data-vendor-theme="dark"] .app-v2 .v2-main .pagination .page-link { background: var(--vendor-dark-surface); color: var(--vendor-dark-text); border-color: var(--vendor-dark-border); }
+html[data-vendor-theme="dark"] .app-v2 .v2-main .pagination .page-item.active .page-link { background: #5f8ff5; border-color: #5f8ff5; color: #fff; }
+html[data-vendor-theme="dark"] .app-v2 .v2-main :is(.btn-light,.btn-outline-secondary,.btn-ghost-secondary) { background-color: var(--vendor-dark-surface-raised) !important; color: var(--vendor-dark-text) !important; border-color: var(--vendor-dark-border) !important; }
+html[data-vendor-theme="dark"] .app-v2 .v2-main :is(a:not(.btn),.link) { color: #9fbdff; }
+html[data-vendor-theme="dark"] .app-v2 .v2-main :is(.modal-header,.modal-footer,.offcanvas-header,.offcanvas-footer) { border-color: var(--vendor-dark-border) !important; }
+html[data-vendor-theme="dark"] .app-v2 .v2-main :is(.close,.btn-close) { filter: invert(1) grayscale(1); }
+html[data-vendor-theme="dark"] .app-v2 .v2-main :is(.alert-light,.alert-secondary) { background-color: var(--vendor-dark-surface-raised); color: var(--vendor-dark-text); border-color: var(--vendor-dark-border); }
+html[data-vendor-theme="dark"] .app-v2 .v2-main .select2-container--default .select2-results__option[aria-selected=true],
+html[data-vendor-theme="dark"] .app-v2 .v2-main .select2-container--default .select2-results__option--highlighted[aria-selected] { background-color: #2a3d68 !important; color: #fff !important; }
+html[data-vendor-theme="dark"] .app-v2 .v2-main :is(.form-control,.form-select,.custom-select,button,a,input,select,textarea):focus { box-shadow: 0 0 0 .2rem rgba(141,178,255,.25) !important; }
+
+/* Header menus, floating panels, and shell controls sit outside .v2-main. */
+html[data-vendor-theme="dark"] .app-v2 :is(.v2-header,.v2-rail,.v2-ctxpanel,.v2-dropdown-menu,.v2-palette,.v2-rail-flyout) { color: var(--vendor-dark-text); }
+html[data-vendor-theme="dark"] .app-v2 :is(.v2-icon-btn,.v2-lang-btn,.v2-avatar-wrap,.v2-sidebar-toggle) { color: var(--vendor-dark-text-muted); }
+html[data-vendor-theme="dark"] .app-v2 :is(.v2-icon-btn,.v2-lang-btn,.v2-avatar-wrap,.v2-sidebar-toggle):hover { background: #2a3858; color: #fff; }
+
+/* Vendor authentication pages share no dashboard wrapper, but carry the same
+   html marker. The left photographic panel stays untouched for brand contrast. */
+html[data-vendor-theme="dark"] body:has(.auth-wrapper) { background: var(--vendor-dark-bg); color: var(--vendor-dark-text); color-scheme: dark; }
+html[data-vendor-theme="dark"] .auth-wrapper-right,
+html[data-vendor-theme="dark"] .auth-wrapper-form,
+html[data-vendor-theme="dark"] .auth-wrapper .card-footer { background: var(--vendor-dark-surface) !important; color: var(--vendor-dark-text) !important; }
+html[data-vendor-theme="dark"] .auth-wrapper :is(h1,h2,h3,h4,h5,h6,p,label,.input-label,.text-gray-900,.text-muted,.custom-control-label) { color: var(--vendor-dark-text) !important; }
+html[data-vendor-theme="dark"] .auth-wrapper :is(.form-control,.input-group-text,.input-group-append .input-group-text) { background: #111a2c !important; color: var(--vendor-dark-text) !important; border-color: var(--vendor-dark-border) !important; }
+html[data-vendor-theme="dark"] .auth-wrapper .form-control::placeholder { color: var(--vendor-dark-text-subtle) !important; opacity: 1; }
+body:has(.auth-wrapper) > .vendor-theme-toggle { position: fixed; top: 18px; inset-inline-end: 18px; z-index: 2000; box-shadow: 0 6px 18px rgba(0,0,0,.28); }
+
+@media (max-width: 575.98px) {
+  body:has(.auth-wrapper) > .vendor-theme-toggle { top: 12px; inset-inline-end: 12px; }
+}
+
+/* Compatibility layer for a cached or interrupted theme-preference script.
+   The vendor shell already carries .v2-theme-dark, so the content must follow
+   that state even before the html data attribute is written. */
+.app-v2.v2-theme-dark .v2-main {
+  background: var(--vendor-dark-bg) !important;
+  color: var(--vendor-dark-text) !important;
+  color-scheme: dark;
+}
+.app-v2.v2-theme-dark .v2-main :is(.card,.card-header,.card-body,.table-responsive,.bg-white,.bg-light,.bg-section,.bg-section1,.bg-section2,.bg-soft-secondary,.dropdown-menu,.offcanvas,.modal-content) {
+  background-color: var(--vendor-dark-surface) !important;
+  color: var(--vendor-dark-text) !important;
+  border-color: var(--vendor-dark-border) !important;
+}
+.app-v2.v2-theme-dark .v2-main :is(.form-control,.form-select,.custom-select,.input-group-text,textarea,select) {
+  background-color: #111a2c !important;
+  color: var(--vendor-dark-text) !important;
+  border-color: var(--vendor-dark-border) !important;
+}
+.app-v2.v2-theme-dark .v2-main :is(h1,h2,h3,h4,h5,h6,p,label,legend,th,td,caption,strong,.text-dark,.title-color,.page-header-title,.card-title,.form-label,.input-label,.custom-control-label) {
+  color: var(--vendor-dark-text) !important;
+}
+.app-v2.v2-theme-dark .v2-main :is(.text-muted,.text-secondary,.text-gray,.text-gray-700,.text-gray-800,.text-gray-900,.form-text) {
+  color: var(--vendor-dark-text-muted) !important;
+}
+.app-v2.v2-theme-dark .v2-main :is(.table,.table > :not(caption) > * > *, .table thead th) {
+  color: var(--vendor-dark-text) !important;
+  border-color: var(--vendor-dark-border) !important;
+}
+.app-v2.v2-theme-dark .v2-main :is(.table thead th,.table-light,.table-light > * > *) { background-color: var(--vendor-dark-surface-raised) !important; }
+.app-v2.v2-theme-dark .v2-main .table-hover tbody tr:hover > * { background-color: #273452 !important; }
+.app-v2.v2-theme-dark .v2-main :is(.border,.border-top,.border-bottom,.border-left,.border-right,.dropdown-divider,.nav-tabs,.nav-tabs .nav-link) { border-color: var(--vendor-dark-border) !important; }
+.app-v2.v2-theme-dark .v2-main .pagination .page-link { background: var(--vendor-dark-surface); color: var(--vendor-dark-text); border-color: var(--vendor-dark-border); }
+.app-v2.v2-theme-dark .v2-main :is(.btn-light,.btn-outline-secondary,.btn-ghost-secondary) { background-color: var(--vendor-dark-surface-raised) !important; color: var(--vendor-dark-text) !important; border-color: var(--vendor-dark-border) !important; }
+.app-v2.v2-theme-dark .v2-main :is(.form-control,.form-select,.custom-select,button,a,input,select,textarea):focus { box-shadow: 0 0 0 .2rem rgba(141,178,255,.25) !important; }
+
+/* Product forms: upload areas, editors, and action buttons use standalone
+   plugin styles, so they need explicit surfaces rather than inherited text. */
+.app-v2.v2-theme-dark .v2-main :is(.upload-file__wrapper,.image-uploader,.image-uploader__zip-preview,.dropzone-custom,.dropzone-custom .dz-message) {
+  background-color: #111a2c !important;
+  color: var(--vendor-dark-text) !important;
+  border-color: var(--vendor-dark-border) !important;
+}
+.app-v2.v2-theme-dark .v2-main .upload-file__wrapper :is(h1,h2,h3,h4,h5,h6,p,span,.text-info),
+.app-v2.v2-theme-dark .v2-main :is(.image-uploader__title,.dropzone-custom .dz-title,.dropzone-custom .dz-size) {
+  color: var(--vendor-dark-text-muted) !important;
+}
+.app-v2.v2-theme-dark .v2-main .note-editor.note-frame,
+.app-v2.v2-theme-dark .v2-main .note-editor .note-toolbar,
+.app-v2.v2-theme-dark .v2-main .note-editor .note-editing-area,
+.app-v2.v2-theme-dark .v2-main .note-editor .note-editable,
+.app-v2.v2-theme-dark .v2-main .note-editor .note-statusbar,
+.app-v2.v2-theme-dark .v2-main .note-editor .note-dropdown-menu,
+.app-v2.v2-theme-dark .v2-main .note-editor .note-modal-content,
+.app-v2.v2-theme-dark .v2-main .ql-toolbar.ql-snow,
+.app-v2.v2-theme-dark .v2-main .ql-container.ql-snow,
+.app-v2.v2-theme-dark .v2-main .ql-toolbar .ql-picker-options {
+  background-color: #111a2c !important;
+  color: var(--vendor-dark-text) !important;
+  border-color: var(--vendor-dark-border) !important;
+}
+.app-v2.v2-theme-dark .v2-main .note-editor :is(.note-btn,.note-btn-group,.note-dropdown-item),
+.app-v2.v2-theme-dark .v2-main .ql-toolbar :is(button,.ql-picker-label,.ql-picker-item) {
+  color: var(--vendor-dark-text) !important;
+  border-color: var(--vendor-dark-border) !important;
+}
+.app-v2.v2-theme-dark .v2-main .ql-toolbar :is(.ql-fill,.ql-stroke.ql-fill) { fill: var(--vendor-dark-text) !important; }
+.app-v2.v2-theme-dark .v2-main .ql-toolbar :is(.ql-stroke,.ql-stroke-miter) { stroke: var(--vendor-dark-text) !important; }
+.app-v2.v2-theme-dark .v2-main .ql-editor { color: var(--vendor-dark-text) !important; }
+.app-v2.v2-theme-dark .v2-main :is(.btn-secondary,.btn-secondary.disabled,.btn-secondary:disabled,button:disabled,.btn.disabled,.btn:disabled) {
+  background-color: #2a344b !important;
+  color: #b8c1d4 !important;
+  border-color: var(--vendor-dark-border) !important;
+  opacity: 1 !important;
+}
+
+/* Legacy vendor screens use several presentation-specific wrappers instead
+   of Bootstrap cards. Keep them dark as well, including empty order states. */
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main .light-bg,
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main :is(.store-report-content .left-content-card,.store-report-content .center-chart-area,.payment-statistics-shadow) {
+  background-color: var(--vendor-dark-surface) !important;
+  color: var(--vendor-dark-text) !important;
+  border: 1px solid var(--vendor-dark-border) !important;
+  box-shadow: none !important;
+}
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main .store-report-content .center-chart-area > .card,
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main .store-report-content .right-content .card {
+  background-color: var(--vendor-dark-surface-raised) !important;
+  border-color: var(--vendor-dark-border) !important;
+}
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main .store-report-content :is(.subtitle,.subtext,.coupon__discount > div > div,.apex-legends span,.total--orders span) {
+  color: var(--vendor-dark-text-muted) !important;
+}
+
+/* Soft alerts previously retained light surfaces, leaving their light text
+   unreadable in the merchant shell. Status colour remains meaningful. */
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main .alert-soft-warning {
+  background-color: #382d1d !important;
+  border: 1px solid #6d542b !important;
+  color: #f6cf97 !important;
+}
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main .alert-soft-info {
+  background-color: #123a49 !important;
+  border: 1px solid #23677d !important;
+  color: #91e4ee !important;
+}
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main .alert-soft-danger {
+  background-color: #422433 !important;
+  border: 1px solid #7b4057 !important;
+  color: #ffb4c7 !important;
+}
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main :is(.alert-soft-warning,.alert-soft-info,.alert-soft-danger) :is(p,span,strong,.text-dark,.text-body) {
+  color: inherit !important;
+}
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main :is(.alert-soft-warning,.alert-soft-info,.alert-soft-danger) a {
+  color: #a9c6ff !important;
+}
+
+/* ApexCharts renders SVG labels with inline fills, so normal text overrides
+   do not reach axes and legends on reports. */
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main .apexcharts-canvas :is(.apexcharts-text,.apexcharts-xaxis-label,.apexcharts-yaxis-label,.apexcharts-legend-text,.apexcharts-datalabel-label,.apexcharts-datalabel-value) {
+  fill: var(--vendor-dark-text-muted) !important;
+  color: var(--vendor-dark-text-muted) !important;
+}
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main .apexcharts-canvas .apexcharts-gridline {
+  stroke: #455270 !important;
+}
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main .apexcharts-tooltip,
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main .apexcharts-xaxistooltip {
+  background: var(--vendor-dark-surface-raised) !important;
+  color: var(--vendor-dark-text) !important;
+  border-color: var(--vendor-dark-border) !important;
+}
+
+/* Product auto-fill used a white animated outline. In dark mode it becomes
+   a quiet, static divider: no white glare and no continuous repaint. */
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main .outline-wrapper {
+  --color1: #34415f;
+  --color2: #40547d;
+  --color3: #34415f;
+  padding: 1px !important;
+  background: var(--vendor-dark-border) !important;
+  transition: none !important;
+}
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main .outline-wrapper.outline-animating {
+  background: #40547d !important;
+  animation: none !important;
+}
+
+/* The additional-images component is created by the Spartan picker and is
+   not an .upload-file__wrapper, so it needs its own dark upload surface. */
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main .multi_image_picker .spartan_item_wrapper .file_upload {
+  background-color: #111a2c !important;
+  color: var(--vendor-dark-text-muted) !important;
+  border-color: var(--vendor-dark-border) !important;
+}
+:is(html[data-vendor-theme="dark"] .app-v2,.app-v2.v2-theme-dark) .v2-main .multi_image_picker .spartan_image_placeholder :is(h1,h2,h3,h4,h5,h6,p,span) {
+  color: var(--vendor-dark-text-muted) !important;
+}
